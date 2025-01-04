@@ -1,7 +1,7 @@
 version: "3"
 services:
     web:
-      image: devopstrainer/java-mvn-privaterepos:php
+      image: docker push jackdhub/jdk-mvn-addressbook:php
       ports:
       - "8001-8002:80"
       deploy:
@@ -9,7 +9,7 @@ services:
       depends_on:
       - mysql
     mysql:
-      image: devopstrainer/java-mvn-privaterepos:mysql
+      image: docker push jackdhub/jdk-mvn-addressbook:mysql
       volumes:
       - db_data:/var/lib/mysql
       environment:
