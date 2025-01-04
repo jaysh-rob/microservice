@@ -27,7 +27,7 @@ pipeline {
            agent any
            steps{
                script{
-                    sshagent(['slave2']){
+                    sshagent(['slave3']){
                          withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                          sh "scp -o StrictHostKeyChecking=no -r deployconfig ${DEPLOY_SERVER_IP}:/home/ec2-user"
                          sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER_IP} 'bash ~/deployconfig/docker-script.sh'"
