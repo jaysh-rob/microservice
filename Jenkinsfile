@@ -32,7 +32,8 @@ pipeline {
                          withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                          sh "scp -o StrictHostKeyChecking=no -r deployconfig ${DEPLOY_SERVER_IP}:/home/ec2-user"
                          sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER_IP} 'bash ~/deployconfig/docker-script.sh'"
-                         sh "ssh ${DEPLOY_SERVER_IP} sudo docker login -u $USERNAME -p $PASSWORD"
+                         sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER_IP} sudo docker login -u ${USERNAME} -p ${PASSWORD}"
+                         //sh "ssh ${DEPLOY_SERVER_IP} sudo docker login -u $USERNAME -p $PASSWORD"
                          sh "ssh ${DEPLOY_SERVER_IP} bash /home/ec2-user/deployconfig/docker-compose-script.sh ${IMAGE_NAME}"
                          }
                     }
