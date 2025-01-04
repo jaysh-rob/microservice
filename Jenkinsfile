@@ -3,7 +3,7 @@ pipeline {
   environment{
        BUILD_SERVER_IP='ec2-user@172.31.2.225'
        IMAGE_NAME='jackdhub/jdk-mvn-addressbook:php$BUILD_NUMBER'
-       DEPLOY_SERVER_IP='ec2-user@172.31.11.173'
+       DEPLOY_SERVER_IP='ec2-user@172.31.15.47'
    }
     stages {          
         stage('BUILD DOCKERIMAGE AND PUSH TO DOCKERHUB') {
