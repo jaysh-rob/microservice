@@ -16,7 +16,8 @@ pipeline {
                 sh "scp -o StrictHostKeyChecking=no -r devconfig ${BUILD_SERVER_IP}:/home/ec2-user"
                 sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER_IP} 'bash ~/devconfig/docker-script.sh'"
                 sh "ssh ${BUILD_SERVER_IP} sudo docker build -t ${IMAGE_NAME} /home/ec2-user/devconfig/"
-                sh "ssh ${BUILD_SERVER_IP} sudo docker login -u $USERNAME -p $PASSWORD"
+                sh "ssh ${BUILD_SERVER_IP} 'echo ${PASSWORD} | sudo docker login --username ${USERNAME} --password-stdin'"
+                //sh "ssh ${BUILD_SERVER_IP} sudo docker login -u $USERNAME -p $PASSWORD"
                 sh "ssh ${BUILD_SERVER_IP} sudo docker push ${IMAGE_NAME}"
               }
             }
